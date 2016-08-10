@@ -44,10 +44,28 @@
       <file leaf-file-name="Announcement.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Announcement.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="61" column="84" selection-start-line="61" selection-start-column="84" selection-end-line="61" selection-end-column="84" />
+            <state relative-caret-position="1965">
+              <caret line="173" column="21" selection-start-line="173" selection-start-column="21" selection-end-line="173" selection-end-column="21" />
               <folding>
                 <element signature="e#36#84#0#PHP" expanded="true" />
+                <marker date="1470821676659" expanded="true" signature="254:4822" ph="{...}" />
+                <marker date="1470821676659" expanded="true" signature="264:402" ph=" @var integer ..." />
+                <marker date="1470821676659" expanded="true" signature="430:522" ph=" @var string ..." />
+                <marker date="1470821676659" expanded="true" signature="553:637" ph=" @var string ..." />
+                <marker date="1470821676659" expanded="true" signature="674:764" ph=" @var \DateTime ..." />
+                <marker date="1470821676659" expanded="true" signature="804:870" ph=" @ORM\OneToOne(targetEntity=&quot;AppBundle\Entity\Photo&quot;) ..." />
+                <marker date="1470821676659" expanded="true" signature="901:999" ph=" @ORM\ManyToMany(targetEntity=&quot;AppBundle\Entity\Category&quot;, inversedBy=&quot;annoucements&quot;) ..." />
+                <marker date="1470821676659" expanded="true" signature="1035:1129" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Comment&quot;, mappedBy=&quot;announcement&quot;) ..." />
+                <marker date="1470821676659" expanded="true" signature="1163:1256" ph=" @ORM\ManyToOne(targetEntity=&quot;AppBundle\Entity\User&quot;, inversedBy=&quot;annoucements&quot;) ..." />
+                <marker date="1470821676659" expanded="true" signature="1312:1375" ph="{...}" />
+                <marker date="1470821676659" expanded="true" signature="1384:1435" ph=" Get id ..." />
+                <marker date="1470821676659" expanded="true" signature="1465:1503" ph="{...}" />
+                <marker date="1470821676659" expanded="true" signature="1512:1598" ph=" Set title ..." />
+                <marker date="1470821676659" expanded="true" signature="1637:1703" ph="{...}" />
+                <marker date="1470821676659" expanded="true" signature="1712:1765" ph=" Get title ..." />
+                <marker date="1470821676659" expanded="true" signature="1798:1839" ph="{...}" />
+                <marker date="1470821676659" expanded="true" signature="1848:1946" ph=" Set description ..." />
+                <marker date="1470821676659" expanded="true" signature="1997:2075" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -56,10 +74,15 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="28" column="77" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
+            <state relative-caret-position="1355">
+              <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
               <folding>
                 <element signature="e#69#117#0#PHP" expanded="true" />
+                <marker date="1470821676587" expanded="true" signature="277:2250" ph="{...}" />
+                <marker date="1470821676587" expanded="true" signature="287:387" ph=" @ORM\Id ..." />
+                <marker date="1470821676587" expanded="true" signature="417:508" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Announcement&quot;, mappedBy=&quot;user&quot;) ..." />
+                <marker date="1470821676587" expanded="true" signature="546:632" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Comment&quot;, mappedBy=&quot;user&quot;) ..." />
+                <marker date="1470821676587" expanded="true" signature="692:837" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -68,8 +91,8 @@
       <file leaf-file-name="Comment.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Comment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="36" column="80" selection-start-line="36" selection-start-column="80" selection-end-line="36" selection-end-column="80" />
+            <state relative-caret-position="1140">
+              <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -318,12 +341,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1470814916242</updated>
-      <workItem from="1470814920193" duration="5739000" />
+      <workItem from="1470814920193" duration="6011000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5739000" />
+    <option name="totallyTimeSpent" value="6011000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1415" y="18" width="1317" height="750" extended-state="6" />
@@ -448,28 +471,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Announcement.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="61" column="84" selection-start-line="61" selection-start-column="84" selection-end-line="61" selection-end-column="84" />
+        <state relative-caret-position="1965">
+          <caret line="173" column="21" selection-start-line="173" selection-start-column="21" selection-end-line="173" selection-end-column="21" />
           <folding>
             <element signature="e#36#84#0#PHP" expanded="true" />
+            <marker date="1470821676659" expanded="true" signature="254:4822" ph="{...}" />
+            <marker date="1470821676659" expanded="true" signature="264:402" ph=" @var integer ..." />
+            <marker date="1470821676659" expanded="true" signature="430:522" ph=" @var string ..." />
+            <marker date="1470821676659" expanded="true" signature="553:637" ph=" @var string ..." />
+            <marker date="1470821676659" expanded="true" signature="674:764" ph=" @var \DateTime ..." />
+            <marker date="1470821676659" expanded="true" signature="804:870" ph=" @ORM\OneToOne(targetEntity=&quot;AppBundle\Entity\Photo&quot;) ..." />
+            <marker date="1470821676659" expanded="true" signature="901:999" ph=" @ORM\ManyToMany(targetEntity=&quot;AppBundle\Entity\Category&quot;, inversedBy=&quot;annoucements&quot;) ..." />
+            <marker date="1470821676659" expanded="true" signature="1035:1129" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Comment&quot;, mappedBy=&quot;announcement&quot;) ..." />
+            <marker date="1470821676659" expanded="true" signature="1163:1256" ph=" @ORM\ManyToOne(targetEntity=&quot;AppBundle\Entity\User&quot;, inversedBy=&quot;annoucements&quot;) ..." />
+            <marker date="1470821676659" expanded="true" signature="1312:1375" ph="{...}" />
+            <marker date="1470821676659" expanded="true" signature="1384:1435" ph=" Get id ..." />
+            <marker date="1470821676659" expanded="true" signature="1465:1503" ph="{...}" />
+            <marker date="1470821676659" expanded="true" signature="1512:1598" ph=" Set title ..." />
+            <marker date="1470821676659" expanded="true" signature="1637:1703" ph="{...}" />
+            <marker date="1470821676659" expanded="true" signature="1712:1765" ph=" Get title ..." />
+            <marker date="1470821676659" expanded="true" signature="1798:1839" ph="{...}" />
+            <marker date="1470821676659" expanded="true" signature="1848:1946" ph=" Set description ..." />
+            <marker date="1470821676659" expanded="true" signature="1997:2075" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Comment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="36" column="80" selection-start-line="36" selection-start-column="80" selection-end-line="36" selection-end-column="80" />
+        <state relative-caret-position="1140">
+          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="28" column="77" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
+        <state relative-caret-position="1355">
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding>
             <element signature="e#69#117#0#PHP" expanded="true" />
+            <marker date="1470821676587" expanded="true" signature="277:2250" ph="{...}" />
+            <marker date="1470821676587" expanded="true" signature="287:387" ph=" @ORM\Id ..." />
+            <marker date="1470821676587" expanded="true" signature="417:508" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Announcement&quot;, mappedBy=&quot;user&quot;) ..." />
+            <marker date="1470821676587" expanded="true" signature="546:632" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Comment&quot;, mappedBy=&quot;user&quot;) ..." />
+            <marker date="1470821676587" expanded="true" signature="692:837" ph="{...}" />
           </folding>
         </state>
       </provider>

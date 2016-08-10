@@ -71,37 +71,4 @@ class Category
     {
         return $this->category;
     }
-
-    /**
-     * Add annoucements
-     *
-     * @param \AppBundle\Entity\Announcement $annoucements
-     * @return Category
-     */
-    public function addAnnoucement(\AppBundle\Entity\Announcement $annoucements)
-    {
-        $this->annoucements[] = $annoucements;
-
-        return $this;
-    }
-
-    /**
-     * Remove annoucements
-     *
-     * @param \AppBundle\Entity\Announcement $annoucements
-     */
-    public function removeAnnoucement(\AppBundle\Entity\Announcement $annoucements)
-    {
-        $this->annoucements->removeElement($annoucements);
-    }
-
-    /**
-     * Get annoucements
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getAnnoucements()
-    {
-        return $this->annoucements;
-    }
 }

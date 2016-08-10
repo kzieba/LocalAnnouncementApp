@@ -95,27 +95,4 @@ class Photo
     {
         return $this->altText;
     }
-
-    /**
-     * Set announcement
-     *
-     * @param \AppBundle\Entity\Announcement $announcement
-     * @return Photo
-     */
-    public function setAnnouncement(\AppBundle\Entity\Announcement $announcement = null)
-    {
-        $this->announcement = $announcement;
-
-        return $this;
-    }
-
-    /**
-     * Get announcement
-     *
-     * @return \AppBundle\Entity\Announcement 
-     */
-    public function getAnnouncement()
-    {
-        return $this->announcement;
-    }
 }
