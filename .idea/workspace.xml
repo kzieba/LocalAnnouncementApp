@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+            <state relative-caret-position="300">
+              <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -48,41 +48,28 @@
               <caret line="173" column="21" selection-start-line="173" selection-start-column="21" selection-end-line="173" selection-end-column="21" />
               <folding>
                 <element signature="e#36#84#0#PHP" expanded="true" />
-                <marker date="1470821676659" expanded="true" signature="254:4822" ph="{...}" />
-                <marker date="1470821676659" expanded="true" signature="264:402" ph=" @var integer ..." />
-                <marker date="1470821676659" expanded="true" signature="430:522" ph=" @var string ..." />
-                <marker date="1470821676659" expanded="true" signature="553:637" ph=" @var string ..." />
-                <marker date="1470821676659" expanded="true" signature="674:764" ph=" @var \DateTime ..." />
-                <marker date="1470821676659" expanded="true" signature="804:870" ph=" @ORM\OneToOne(targetEntity=&quot;AppBundle\Entity\Photo&quot;) ..." />
-                <marker date="1470821676659" expanded="true" signature="901:999" ph=" @ORM\ManyToMany(targetEntity=&quot;AppBundle\Entity\Category&quot;, inversedBy=&quot;annoucements&quot;) ..." />
-                <marker date="1470821676659" expanded="true" signature="1035:1129" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Comment&quot;, mappedBy=&quot;announcement&quot;) ..." />
-                <marker date="1470821676659" expanded="true" signature="1163:1256" ph=" @ORM\ManyToOne(targetEntity=&quot;AppBundle\Entity\User&quot;, inversedBy=&quot;annoucements&quot;) ..." />
-                <marker date="1470821676659" expanded="true" signature="1312:1375" ph="{...}" />
-                <marker date="1470821676659" expanded="true" signature="1384:1435" ph=" Get id ..." />
-                <marker date="1470821676659" expanded="true" signature="1465:1503" ph="{...}" />
-                <marker date="1470821676659" expanded="true" signature="1512:1598" ph=" Set title ..." />
-                <marker date="1470821676659" expanded="true" signature="1637:1703" ph="{...}" />
-                <marker date="1470821676659" expanded="true" signature="1712:1765" ph=" Get title ..." />
-                <marker date="1470821676659" expanded="true" signature="1798:1839" ph="{...}" />
-                <marker date="1470821676659" expanded="true" signature="1848:1946" ph=" Set description ..." />
-                <marker date="1470821676659" expanded="true" signature="1997:2075" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PhotoController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PhotoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1355">
               <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
               <folding>
                 <element signature="e#69#117#0#PHP" expanded="true" />
-                <marker date="1470821676587" expanded="true" signature="277:2250" ph="{...}" />
-                <marker date="1470821676587" expanded="true" signature="287:387" ph=" @ORM\Id ..." />
-                <marker date="1470821676587" expanded="true" signature="417:508" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Announcement&quot;, mappedBy=&quot;user&quot;) ..." />
-                <marker date="1470821676587" expanded="true" signature="546:632" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Comment&quot;, mappedBy=&quot;user&quot;) ..." />
-                <marker date="1470821676587" expanded="true" signature="692:837" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -109,12 +96,12 @@
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Photo.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Category.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Announcement.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Comment.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
       </list>
     </option>
   </component>
@@ -127,7 +114,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="1415" />
-    <option name="y" value="18" />
+    <option name="y" value="-750" />
     <option name="width" value="1317" />
     <option name="height" value="750" />
   </component>
@@ -204,6 +191,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LocalAnnouncementApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LocalAnnouncementApp" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -341,15 +354,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1470814916242</updated>
-      <workItem from="1470814920193" duration="6011000" />
+      <workItem from="1470814920193" duration="8062000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6011000" />
+    <option name="totallyTimeSpent" value="8062000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1415" y="18" width="1317" height="750" extended-state="6" />
+    <frame x="1415" y="-750" width="1317" height="750" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981017" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -435,22 +448,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Photo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -469,34 +466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Announcement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1965">
-          <caret line="173" column="21" selection-start-line="173" selection-start-column="21" selection-end-line="173" selection-end-column="21" />
-          <folding>
-            <element signature="e#36#84#0#PHP" expanded="true" />
-            <marker date="1470821676659" expanded="true" signature="254:4822" ph="{...}" />
-            <marker date="1470821676659" expanded="true" signature="264:402" ph=" @var integer ..." />
-            <marker date="1470821676659" expanded="true" signature="430:522" ph=" @var string ..." />
-            <marker date="1470821676659" expanded="true" signature="553:637" ph=" @var string ..." />
-            <marker date="1470821676659" expanded="true" signature="674:764" ph=" @var \DateTime ..." />
-            <marker date="1470821676659" expanded="true" signature="804:870" ph=" @ORM\OneToOne(targetEntity=&quot;AppBundle\Entity\Photo&quot;) ..." />
-            <marker date="1470821676659" expanded="true" signature="901:999" ph=" @ORM\ManyToMany(targetEntity=&quot;AppBundle\Entity\Category&quot;, inversedBy=&quot;annoucements&quot;) ..." />
-            <marker date="1470821676659" expanded="true" signature="1035:1129" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Comment&quot;, mappedBy=&quot;announcement&quot;) ..." />
-            <marker date="1470821676659" expanded="true" signature="1163:1256" ph=" @ORM\ManyToOne(targetEntity=&quot;AppBundle\Entity\User&quot;, inversedBy=&quot;annoucements&quot;) ..." />
-            <marker date="1470821676659" expanded="true" signature="1312:1375" ph="{...}" />
-            <marker date="1470821676659" expanded="true" signature="1384:1435" ph=" Get id ..." />
-            <marker date="1470821676659" expanded="true" signature="1465:1503" ph="{...}" />
-            <marker date="1470821676659" expanded="true" signature="1512:1598" ph=" Set title ..." />
-            <marker date="1470821676659" expanded="true" signature="1637:1703" ph="{...}" />
-            <marker date="1470821676659" expanded="true" signature="1712:1765" ph=" Get title ..." />
-            <marker date="1470821676659" expanded="true" signature="1798:1839" ph="{...}" />
-            <marker date="1470821676659" expanded="true" signature="1848:1946" ph=" Set description ..." />
-            <marker date="1470821676659" expanded="true" signature="1997:2075" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Comment.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
@@ -511,12 +480,41 @@
           <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding>
             <element signature="e#69#117#0#PHP" expanded="true" />
-            <marker date="1470821676587" expanded="true" signature="277:2250" ph="{...}" />
-            <marker date="1470821676587" expanded="true" signature="287:387" ph=" @ORM\Id ..." />
-            <marker date="1470821676587" expanded="true" signature="417:508" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Announcement&quot;, mappedBy=&quot;user&quot;) ..." />
-            <marker date="1470821676587" expanded="true" signature="546:632" ph=" @ORM\OneToMany(targetEntity=&quot;AppBundle\Entity\Comment&quot;, mappedBy=&quot;user&quot;) ..." />
-            <marker date="1470821676587" expanded="true" signature="692:837" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PhotoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Announcement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1965">
+          <caret line="173" column="21" selection-start-line="173" selection-start-column="21" selection-end-line="173" selection-end-column="21" />
+          <folding>
+            <element signature="e#36#84#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
