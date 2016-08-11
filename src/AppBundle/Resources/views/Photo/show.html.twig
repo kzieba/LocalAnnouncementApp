@@ -22,7 +22,12 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('photo') }}">
+        <a href="{{ path('announcement_show',{'id':entity.announcement.id}) }}">
+            Back to the announcement
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('announcement') }}">
             Back to the list
         </a>
     </li>

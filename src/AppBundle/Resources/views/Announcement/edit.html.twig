@@ -5,6 +5,8 @@
 
     {{ form(edit_form) }}
 
+    <a href="{{ path('photo_new', { 'id':entity.id }) }}">add new foto</a>
+
         <ul class="record_actions">
     <li>
         <a href="{{ path('announcement') }}">

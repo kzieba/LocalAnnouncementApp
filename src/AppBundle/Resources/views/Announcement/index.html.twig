@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Category</th>
                 <th>Expirationtime</th>
                 <th>Actions</th>
             </tr>
@@ -19,7 +20,20 @@
                 <td><a href="{{ path('announcement_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.description }}</td>
-                <td>{{ entity.expirationTime }}</td>
+                <td>
+                    <ul>
+                        {% for category in entity.categories %}
+                            {{ category }}
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>{{ entity.expirationTime|date('c') }}</td>
+                <td>
+                    {% for comment in entity.comments %}
+                        <p><strong>{{ comment.user.username }}</strong> commented:</p>
+                        <p>{{ comment.text }}</p>
+                    {% endfor %}
+                </td>
                 <td>
                 <ul>
                     <li>
@@ -27,6 +41,12 @@
                     </li>
                     <li>
                         <a href="{{ path('announcement_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                    <li>
+                        <form method="POST" action="{{ path('comment_new',{'id':entity.id}) }}">
+                            <input type="hidden" name="announcement" value="{{ entity }}">
+                            <input type="submit" value="add comment">
+                        </form>
                     </li>
                 </ul>
                 </td>

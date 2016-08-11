@@ -18,9 +18,9 @@ class AnnouncementType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('expirationTime')
-            ->add('photo')
+    //        ->add('photo')
             ->add('categories')
-            ->add('user')
+    //        ->add('user')
         ;
     }
     

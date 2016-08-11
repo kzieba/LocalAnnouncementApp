@@ -30,7 +30,6 @@ class AnnouncementController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:Announcement')->findAll();
-
         return array(
             'entities' => $entities,
         );
@@ -45,8 +44,11 @@ class AnnouncementController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Announcement();
+        $entity->setUser($this->getUser());
+
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

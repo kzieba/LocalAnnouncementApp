@@ -17,7 +17,7 @@ class PhotoType extends AbstractType
         $builder
             ->add('pathToFile')
             ->add('altText')
-            ->add('announcement')
+    //        ->add('announcement')
         ;
     }
     

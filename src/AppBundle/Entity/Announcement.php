@@ -39,7 +39,7 @@ class Announcement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expirationTime", type="time")
+     * @ORM\Column(name="expirationTime", type="datetimetz")
      */
     private $expirationTime;
 
@@ -66,6 +66,11 @@ class Announcement
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     /**
@@ -144,7 +149,10 @@ class Announcement
      */
     public function getExpirationTime()
     {
+//        return gettype($this->expirationTime->getTimestamp());
+//        return $this->expirationTime->getTimestamp();
         return $this->expirationTime;
+//        return date('c', $this->expirationTime->getTimestamp());
     }
 
     /**

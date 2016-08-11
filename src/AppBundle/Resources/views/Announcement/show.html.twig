@@ -19,12 +19,18 @@
             </tr>
             <tr>
                 <th>Expirationtime</th>
-                <td>{{ entity.expirationTime }}</td>
+                <td>{{ entity.expirationTime.timestamp }}</td>
             </tr>
         </tbody>
     </table>
 
-        <ul class="record_actions">
+    {% if entity.photo %}
+    <img src="http://192.168.33.22:8000/{{ entity.photo.pathToFile }}" alt="{{ entity.photo.altText }}" height="100" width="100">
+    {% else %}
+        <p>There is no image for this annoucement yet!</p>
+    {% endif %}
+
+    <ul class="record_actions">
     <li>
         <a href="{{ path('announcement') }}">
             Back to the list

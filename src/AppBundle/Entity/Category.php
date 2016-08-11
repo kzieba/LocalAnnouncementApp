@@ -39,6 +39,11 @@ class Category
         $this->annoucements = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getCategory();
+    }
+
     /**
      * Get id
      *

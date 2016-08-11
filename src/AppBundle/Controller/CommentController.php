@@ -2,11 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Exception;
 use AppBundle\Entity\Comment;
 use AppBundle\Form\CommentType;
 
@@ -38,14 +41,19 @@ class CommentController extends Controller
     /**
      * Creates a new Comment entity.
      *
-     * @Route("/", name="comment_create")
+     * @Route("/create/{id}", name="comment_create")
      * @Method("POST")
      * @Template("AppBundle:Comment:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $id)
     {
+        $announcement = $this->getDoctrine()->getRepository('AppBundle:Announcement')->find($id);
         $entity = new Comment();
-        $form = $this->createCreateForm($entity);
+
+        $entity->setUser($this->getUser());
+        $entity->setAnnouncement($announcement);
+
+        $form = $this->createCreateForm($entity, $id);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -69,10 +77,10 @@ class CommentController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Comment $entity)
+    private function createCreateForm(Comment $entity, $id)
     {
         $form = $this->createForm(new CommentType(), $entity, array(
-            'action' => $this->generateUrl('comment_create'),
+            'action' => $this->generateUrl('comment_create', ['id' => $id]),
             'method' => 'POST',
         ));
 
@@ -84,14 +92,15 @@ class CommentController extends Controller
     /**
      * Displays a form to create a new Comment entity.
      *
-     * @Route("/new", name="comment_new")
-     * @Method("GET")
+     * @Route("/new/{id}", name="comment_new")
+     * @Method("POST")
      * @Template()
      */
-    public function newAction()
+    public function newAction($id)
     {
         $entity = new Comment();
-        $form   = $this->createCreateForm($entity);
+
+        $form   = $this->createCreateForm($entity, $id);
 
         return array(
             'entity' => $entity,

@@ -38,22 +38,26 @@ class PhotoController extends Controller
     /**
      * Creates a new Photo entity.
      *
-     * @Route("/", name="photo_create")
+     * @Route("/create/{id}", name="photo_create")
      * @Method("POST")
      * @Template("AppBundle:Photo:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $id)
     {
         $entity = new Photo();
-        $form = $this->createCreateForm($entity);
+        $announcement = $this->getDoctrine()->getRepository('AppBundle:Announcement')->find($id);
+        $entity->setAnnouncement($announcement);
+        $form = $this->createCreateForm($entity, $id);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $announcement->setPhoto($entity);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('photo_show', array('id' => $entity->getId())));
+//            return $this->redirect($this->generateUrl('photo_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('announcement_show', array('id' => $entity->getAnnouncement()->getId())));
         }
 
         return array(
@@ -69,10 +73,10 @@ class PhotoController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Photo $entity)
+    private function createCreateForm(Photo $entity, $id)
     {
         $form = $this->createForm(new PhotoType(), $entity, array(
-            'action' => $this->generateUrl('photo_create'),
+            'action' => $this->generateUrl('photo_create', ['id' => $id]),
             'method' => 'POST',
         ));
 
@@ -84,14 +88,14 @@ class PhotoController extends Controller
     /**
      * Displays a form to create a new Photo entity.
      *
-     * @Route("/new", name="photo_new")
+     * @Route("/new/{id}", name="photo_new")
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
+    public function newAction($id)
     {
         $entity = new Photo();
-        $form   = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity, $id);
 
         return array(
             'entity' => $entity,
