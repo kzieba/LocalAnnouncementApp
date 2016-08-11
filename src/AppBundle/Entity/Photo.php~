@@ -36,7 +36,7 @@ class Photo
     private $altText;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Announcement", inversedBy="photo")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Announcement", inversedBy="photos")
      */
     private $announcement;
 
@@ -94,5 +94,28 @@ class Photo
     public function getAltText()
     {
         return $this->altText;
+    }
+
+    /**
+     * Set announcement
+     *
+     * @param \AppBundle\Entity\Announcement $announcement
+     * @return Photo
+     */
+    public function setAnnouncement(\AppBundle\Entity\Announcement $announcement = null)
+    {
+        $this->announcement = $announcement;
+
+        return $this;
+    }
+
+    /**
+     * Get announcement
+     *
+     * @return \AppBundle\Entity\Announcement 
+     */
+    public function getAnnouncement()
+    {
+        return $this->announcement;
     }
 }

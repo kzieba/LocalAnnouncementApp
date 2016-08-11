@@ -36,7 +36,7 @@ class Photo
     private $altText;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Announcement", inversedBy="photo")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Announcement", inversedBy="photos")
      */
     private $announcement;
 

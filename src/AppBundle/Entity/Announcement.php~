@@ -39,14 +39,14 @@ class Announcement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expirationTime", type="time")
+     * @ORM\Column(name="expirationTime", type="datetimetz")
      */
     private $expirationTime;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="announcement")
      */
-    private $photo;
+    private $photos;
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="annoucements")
@@ -66,6 +66,12 @@ class Announcement
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->photos = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
     /**
@@ -144,6 +150,100 @@ class Announcement
      */
     public function getExpirationTime()
     {
+//        return gettype($this->expirationTime->getTimestamp());
+//        return $this->expirationTime->getTimestamp();
         return $this->expirationTime;
+//        return date('c', $this->expirationTime->getTimestamp());
+    }
+
+
+
+    /**
+     * Add categories
+     *
+     * @param \AppBundle\Entity\Category $categories
+     * @return Announcement
+     */
+    public function addCategory(\AppBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \AppBundle\Entity\Category $categories
+     */
+    public function removeCategory(\AppBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \AppBundle\Entity\Comment $comments
+     * @return Announcement
+     */
+    public function addComment(\AppBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \AppBundle\Entity\Comment $comments
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Announcement
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

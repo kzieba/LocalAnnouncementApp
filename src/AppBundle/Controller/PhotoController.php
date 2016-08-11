@@ -95,6 +95,11 @@ class PhotoController extends Controller
     public function newAction($id)
     {
         $entity = new Photo();
+        $announcement = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Announcement')
+            ->find($id);
+        $entity->setAnnouncement($announcement);
         $form   = $this->createCreateForm($entity, $id);
 
         return array(

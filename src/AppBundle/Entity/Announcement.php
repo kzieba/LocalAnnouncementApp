@@ -44,9 +44,9 @@ class Announcement
     private $expirationTime;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="announcement")
      */
-    private $photo;
+    private $photos;
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="annoucements")
@@ -66,6 +66,7 @@ class Announcement
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->photos = new ArrayCollection();
     }
 
     public function __toString()
@@ -155,28 +156,7 @@ class Announcement
 //        return date('c', $this->expirationTime->getTimestamp());
     }
 
-    /**
-     * Set photo
-     *
-     * @param \AppBundle\Entity\Photo $photo
-     * @return Announcement
-     */
-    public function setPhoto(\AppBundle\Entity\Photo $photo = null)
-    {
-        $this->photo = $photo;
 
-        return $this;
-    }
-
-    /**
-     * Get photo
-     *
-     * @return \AppBundle\Entity\Photo 
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
 
     /**
      * Add categories
@@ -265,5 +245,38 @@ class Announcement
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add photos
+     *
+     * @param \AppBundle\Entity\Photo $photos
+     * @return Announcement
+     */
+    public function addPhoto(\AppBundle\Entity\Photo $photos)
+    {
+        $this->photos[] = $photos;
+
+        return $this;
+    }
+
+    /**
+     * Remove photos
+     *
+     * @param \AppBundle\Entity\Photo $photos
+     */
+    public function removePhoto(\AppBundle\Entity\Photo $photos)
+    {
+        $this->photos->removeElement($photos);
+    }
+
+    /**
+     * Get photos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
     }
 }

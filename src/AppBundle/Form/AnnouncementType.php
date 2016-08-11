@@ -21,6 +21,7 @@ class AnnouncementType extends AbstractType
     //        ->add('photo')
             ->add('categories')
     //        ->add('user')
+
         ;
     }
     

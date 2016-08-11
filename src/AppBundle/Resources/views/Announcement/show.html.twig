@@ -24,11 +24,11 @@
         </tbody>
     </table>
 
-    {% if entity.photo %}
-    <img src="http://192.168.33.22:8000/{{ entity.photo.pathToFile }}" alt="{{ entity.photo.altText }}" height="100" width="100">
+    {% for photo in entity.photos %}
+        <img src="http://192.168.33.22:8000/{{ photo.pathToFile }}" alt="{{ photo.altText }}" height="100" width="100">
     {% else %}
         <p>There is no image for this annoucement yet!</p>
-    {% endif %}
+    {% endfor %}
 
     <ul class="record_actions">
     <li>
