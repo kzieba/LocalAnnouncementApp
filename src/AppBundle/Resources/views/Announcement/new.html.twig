@@ -1,9 +1,9 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:index.html.twig' %}
 
 {% block body -%}
     <h1>Announcement creation</h1>
 
-    {{ form(form) }}
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
         <ul class="record_actions">
     <li>

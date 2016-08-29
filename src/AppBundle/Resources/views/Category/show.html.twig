@@ -1,32 +1,57 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:index.html.twig' %}
 
 {% block body -%}
-    <h1>Category</h1>
+    <h1>{{ entity.category }}</h1>
 
-    <table class="record_properties">
+    {#<table class="record_properties">#}
+        {#<tbody>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<td>{{ entity.id }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Category</th>#}
+                {#<td>{{ entity.category }}</td>#}
+            {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
+
+
+
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('category_edit', { 'id': entity.id }) }}">
+                    Edit
+                </a>
+            </li>
+            <li>
+                {{ form(delete_form) }}
+            </li>
+        </ul>
+    {% endif %}
+
+
+
+    <table class="records_list">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Added by user</th>
+        </tr>
+        </thead>
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Category</th>
-                <td>{{ entity.category }}</td>
-            </tr>
+    {% for annoucement in entity.annoucements %}
+        {% if annoucement.expirationTime > date() %}
+            {% include 'AppBundle:Announcement:title.html.twig' with {'entity':annoucement} %}
+        {% endif %}
+    {% endfor %}
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('category') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('category_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <a href="{{ path('category') }}">
+        Back to the list
+    </a>
+
 {% endblock %}

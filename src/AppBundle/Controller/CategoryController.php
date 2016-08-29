@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -41,6 +42,7 @@ class CategoryController extends Controller
      * @Route("/", name="category_create")
      * @Method("POST")
      * @Template("AppBundle:Category:new.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request)
     {
@@ -87,6 +89,7 @@ class CategoryController extends Controller
      * @Route("/new", name="category_new")
      * @Method("GET")
      * @Template()
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function newAction()
     {
@@ -116,6 +119,8 @@ class CategoryController extends Controller
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
 
+;
+
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -130,6 +135,7 @@ class CategoryController extends Controller
      * @Route("/{id}/edit", name="category_edit")
      * @Method("GET")
      * @Template()
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editAction($id)
     {
@@ -175,6 +181,7 @@ class CategoryController extends Controller
      * @Route("/{id}", name="category_update")
      * @Method("PUT")
      * @Template("AppBundle:Category:edit.html.twig")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function updateAction(Request $request, $id)
     {
@@ -207,6 +214,7 @@ class CategoryController extends Controller
      *
      * @Route("/{id}", name="category_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, $id)
     {

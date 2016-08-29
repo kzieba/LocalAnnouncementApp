@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Photo;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -9,6 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Announcement;
 use AppBundle\Form\AnnouncementType;
+use Symfony\Component\HttpFoundation\Response;
+use DateTime;
 
 /**
  * Announcement controller.
@@ -29,11 +33,52 @@ class AnnouncementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Announcement')->findAll();
+//        $entities = $em->getRepository('AppBundle:Announcement')->findAll();
+        $entities = $em->getRepository('AppBundle:Announcement')->findActuall();
+
         return array(
             'entities' => $entities,
         );
     }
+
+    /**
+     * Lists all Announcement entities.
+     *
+     * @Route("/page/{page}", name="announcementpage")
+     * @Method("GET")
+     * @Template("AppBundle:Announcement:index.html.twig")
+     */
+    public function pageAction($page)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+//        $entities = $em->getRepository('AppBundle:Announcement')->findAll();
+        $entities = $em->getRepository('AppBundle:Announcement')->findActuall($page);
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
+    /**
+     * Lists all Announcement entities.
+     *
+     * @Route("/user", name="showByUser")
+     * @Method("GET")
+     * @Template("AppBundle:Announcement:index.html.twig")
+     */
+    public function showByUserAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+//        $entities = $em->getRepository('AppBundle:Announcement')->findAll();
+        $entities = $em->getRepository('AppBundle:Announcement')->findBy(['user'=> $this->getUser()]);
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
     /**
      * Creates a new Announcement entity.
      *
@@ -52,7 +97,33 @@ class AnnouncementController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+
+            $uploaded = $form->get('uploaded_file');
+
             $em->persist($entity);
+
+
+            $photo = new Photo();
+            $photo->setAltText($form->get('alt_text')->getName());
+
+
+            $file = $uploaded
+                ->getData();
+
+            if($file) {
+
+                $em->persist($photo);
+                $em->flush();
+
+                $newName = uniqid() . '_' . $entity->getId();
+                $file->move("/vagrant/LocalAnnouncementApp/web/images", $newName);
+
+                $photo->setAnnouncement($entity);
+                $photo->setPathToFile('/images/' . $newName);
+                $entity->addPhoto($photo);
+
+            }
             $em->flush();
 
             return $this->redirect($this->generateUrl('announcement_show', array('id' => $entity->getId())));
@@ -106,17 +177,37 @@ class AnnouncementController extends Controller
      *
      * @Route("/{id}", name="announcement_show")
      * @Method("GET")
+     * Template("AppBundle:Announcement:title.html.twig")
      * @Template()
      */
     public function showAction($id)
     {
+        // @Template("AppBundle:Announcement:title.html.twig")
+        $date = new DateTime();
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:Announcement')->find($id);
 
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Announcement entity.');
         }
+
+        $user = $this->getUser();
+        if($user) {
+            if (!($user->getId() === $entity->getUser()->getId())) {
+                if ($entity->getExpirationTime() < $date) {
+                    return $this->redirect($this->generateUrl('announcement'));
+                }
+            }
+        } else if ($entity->getExpirationTime() < $date) {
+            return $this->redirect($this->generateUrl('announcement'));
+        }
+
+//        var_dump(gettype($entity->getExpirationTime()));
+//        var_dump(gettype( new DateTime() ));
+//        var_dump(gettype(date('c')));
 
         $deleteForm = $this->createDeleteForm($id);
 
@@ -139,8 +230,15 @@ class AnnouncementController extends Controller
 
         $entity = $em->getRepository('AppBundle:Announcement')->find($id);
 
+
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Announcement entity.');
+        }
+
+        $user = $this->getUser();
+        if(!($user->getId() === $entity->getUser()->getId())){
+            return $this->redirect($this->generateUrl('announcement_show', array('id' => $id)));
         }
 
         $editForm = $this->createEditForm($entity);
@@ -188,12 +286,69 @@ class AnnouncementController extends Controller
             throw $this->createNotFoundException('Unable to find Announcement entity.');
         }
 
+        $user = $this->getUser();
+        if(!($user->getId() === $entity->getUser()->getId())){
+            return $this->redirect($this->generateUrl('announcement_show', array('id' => $id)));
+        }
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
+
+
+
+
+
+
+
+
+
+
+
+            $uploaded = $editForm->get('uploaded_file');
+
+
+
+            $photo = new Photo();
+            $photo->setAltText($editForm->get('alt_text')->getName());
+
+
+            $file = $uploaded
+                ->getData();
+
+            if($file) {
+
+
+                    $em->persist($photo);
+                $em->flush();
+
+                $newName = uniqid() . '_' . $entity->getId();
+                $file->move("/vagrant/LocalAnnouncementApp/web/images", $newName);
+
+                $photo->setAnnouncement($entity);
+                $photo->setPathToFile('/images/' . $newName);
+                $entity->addPhoto($photo);
+
+                $em->flush();
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             return $this->redirect($this->generateUrl('announcement_edit', array('id' => $id)));
         }

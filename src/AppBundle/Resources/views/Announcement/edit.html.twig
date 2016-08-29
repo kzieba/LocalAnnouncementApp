@@ -1,16 +1,20 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:index.html.twig' %}
 
 {% block body -%}
     <h1>Announcement edit</h1>
 
-    {{ form(edit_form) }}
+    {{ form(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-    <a href="{{ path('photo_new', { 'id':entity.id }) }}">add new foto</a>
+    {% for photo in entity.photos %}
+        <img src="{{  asset(photo.pathToFile) }}" alt="{{ photo.altText }}" height="100" width="100">
+        <a href="{{ path('photo_edit',{'id':photo.id}) }}">Edit photo</a>
+    {% endfor %}
+    {#<a href="{{ path('photo_new', { 'id':entity.id }) }}">add new foto</a>#}
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('announcement') }}">
-            Back to the list
+        <a href="{{ path('announcement_show', {'id':entity.id}) }}">
+            Back to add
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>

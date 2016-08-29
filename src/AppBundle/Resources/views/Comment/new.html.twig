@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:index.html.twig' %}
 
 {% block body -%}
     <h1>Comment creation</h1>
@@ -7,8 +7,9 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('comment') }}">
-            Back to the list
+        <a>
+        <a href="{{ path('announcement_show',{'id':entity.announcement.id}) }}">
+            Back to announcement
         </a>
     </li>
 </ul>

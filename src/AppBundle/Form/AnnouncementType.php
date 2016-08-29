@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class AnnouncementType extends AbstractType
@@ -20,6 +21,8 @@ class AnnouncementType extends AbstractType
             ->add('expirationTime')
     //        ->add('photo')
             ->add('categories')
+            ->add('uploaded_file', 'file' , ['mapped'=>false] )
+            ->add('alt_text','text', ['mapped'=>false])
     //        ->add('user')
 
         ;

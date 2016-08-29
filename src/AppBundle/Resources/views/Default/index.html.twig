@@ -1,61 +1,120 @@
-<h1>Hello world!</h1>
-<ul>
-    <li>
-        <a href="{{ path('fos_user_registration_register') }}">register</a>
-    </li>
-    <li>
-        <a href="{{ path('fos_user_security_login') }}">login</a>
-    </li>
-    <li>
-        <a href="{{ path('fos_user_security_logout') }}">logout</a>
-    </li>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('style.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+{% block nav1 %}
+    <div>
+        <ul>
+            {% if app.user %}
+                <li>
+                    you are logged as: {{ app.user.username }}
+                    <a href="{{ path('fos_user_security_logout') }}">logout</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ path('fos_user_security_login') }}">login</a>
+                    or
+                    <a href="{{ path('fos_user_registration_register') }}">register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+{% block nav2 %}
+    <div>
+        <ul>
+            <li>
+                <a href="{{ path('app_default_index') }}">Main page</a>
+            </li>
+            <li>
+                <a href="{{ path('announcement') }}">Announcements</a>
+            </li>
+            <li>
+                <a href="{{ path('category') }}">Categories</a>
+            </li>
+            {% if app.user %}
+                <li>
+                    <a href="{{ path('showByUser') }}">my annoucements</a>
+                </li>
+                <li>
+                    <a href="{{ path('comment') }}">my comments</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+<div class="content">
+{% block body %}
+    <h1>Simple app for local ads!</h1>
+    {% include ('AppBundle:Default:readme.html.twig') %}
+    <ul>
+        {#<li>#}
+            {#<a href="{{ path('fos_user_registration_register') }}">register</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('fos_user_security_login') }}">login</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('fos_user_security_logout') }}">logout</a>#}
+        {#</li>#}
 
-    {#<li>#}
+        {#<li>#}
         {#<ol>#}
-            {#<li><a href="{{ path('photo') }}">photo</li>#}
-            {#<li><a href="{{ path('photo_create') }}">photo_create</a></li>#}
-            {#<li><a href="{{ path('photo_delete', {'id':0}) }}">photo_delete{id}</a></li>#}
-            {#<li><a href="{{ path('photo_edit', {'id':0}) }}">photo_edit{id}</a></li>#}
-            {#<li><a href="{{ path('photo_new') }}">photo_new</a></li>#}
-            {#<li><a href="{{ path('photo_show', {'id':0}) }}">photo_show{id}</a></li>#}
-            {#<li><a href="{{ path('photo_update', {'id':0}) }}">photo_update{id}</a></li>#}
+        {#<li><a href="{{ path('photo') }}">photo</li>#}
+        {#<li><a href="{{ path('photo_create') }}">photo_create</a></li>#}
+        {#<li><a href="{{ path('photo_delete', {'id':0}) }}">photo_delete{id}</a></li>#}
+        {#<li><a href="{{ path('photo_edit', {'id':0}) }}">photo_edit{id}</a></li>#}
+        {#<li><a href="{{ path('photo_new') }}">photo_new</a></li>#}
+        {#<li><a href="{{ path('photo_show', {'id':0}) }}">photo_show{id}</a></li>#}
+        {#<li><a href="{{ path('photo_update', {'id':0}) }}">photo_update{id}</a></li>#}
         {#</ol>#}
-    {#</li>#}
+        {#</li>#}
 
-    {#<li>#}
+        {#<li>#}
         {#<ol>#}
-            {#<li><a href="{{ path('comment') }}">comment</li>#}
-            {#<li><a href="{{ path('comment_create') }}">comment_create</a></li>#}
-            {#<li><a href="{{ path('comment_delete', {'id':0}) }}">comment_delete{id}</a></li>#}
-            {#<li><a href="{{ path('comment_edit', {'id':0}) }}">comment_edit{id}</a></li>#}
-            {#<li><a href="{{ path('comment_new') }}">comment_new</a></li>#}
-            {#<li><a href="{{ path('comment_show', {'id':0}) }}">comment_show{id}</a></li>#}
-            {#<li><a href="{{ path('comment_update', {'id':0}) }}">comment_update{id}</a></li>#}
+        {#<li><a href="{{ path('comment') }}">comment</li>#}
+        {#<li><a href="{{ path('comment_create') }}">comment_create</a></li>#}
+        {#<li><a href="{{ path('comment_delete', {'id':0}) }}">comment_delete{id}</a></li>#}
+        {#<li><a href="{{ path('comment_edit', {'id':0}) }}">comment_edit{id}</a></li>#}
+        {#<li><a href="{{ path('comment_new') }}">comment_new</a></li>#}
+        {#<li><a href="{{ path('comment_show', {'id':0}) }}">comment_show{id}</a></li>#}
+        {#<li><a href="{{ path('comment_update', {'id':0}) }}">comment_update{id}</a></li>#}
         {#</ol>#}
-    {#</li>#}
+        {#</li>#}
 
-    <li>
-        <ol>
-            <li><a href="{{ path('category') }}">category</li>
-            <li><a href="{{ path('category_create') }}">category_create</a></li>
-            <li><a href="{{ path('category_delete', {'id':0}) }}">category_delete{id}</a></li>
-            <li><a href="{{ path('category_edit', {'id':0}) }}">category_edit{id}</a></li>
-            <li><a href="{{ path('category_new') }}">category_new</a></li>
-            <li><a href="{{ path('category_show', {'id':0}) }}">category_show{id}</a></li>
-            <li><a href="{{ path('category_update', {'id':0}) }}">category_update{id}</a></li>
-        </ol>
-    </li>
+        {#<li>#}
+            {#<ol>#}
+                {#<li><a href="{{ path('category') }}">category</li>#}
+                {#<li><a href="{{ path('category_create') }}">category_create</a></li>#}
+                {#<li><a href="{{ path('category_delete', {'id':0}) }}">category_delete{id}</a></li>#}
+                {#<li><a href="{{ path('category_edit', {'id':0}) }}">category_edit{id}</a></li>#}
+                {#<li><a href="{{ path('category_new') }}">category_new</a></li>#}
+                {#<li><a href="{{ path('category_show', {'id':0}) }}">category_show{id}</a></li>#}
+                {#<li><a href="{{ path('category_update', {'id':0}) }}">category_update{id}</a></li>#}
+            {#</ol>#}
+        {#</li>#}
 
-    <li>
-        <ol>
-            <li><a href="{{ path('announcement') }}">announcement</li>
-            <li><a href="{{ path('announcement_create') }}">announcement_create</a></li>
-            <li><a href="{{ path('announcement_delete', {'id':0}) }}">announcement_delete{id}</a></li>
-            <li><a href="{{ path('announcement_edit', {'id':0}) }}">announcement_edit{id}</a></li>
-            <li><a href="{{ path('announcement_new') }}">announcement_new</a></li>
-            <li><a href="{{ path('announcement_show', {'id':0}) }}">announcement_show{id}</a></li>
-            <li><a href="{{ path('announcement_update', {'id':0}) }}">announcement_update{id}</a></li>
-        </ol>
-    </li>
-
-</ul>
+        {#<li>#}
+            {#<ol>#}
+                {#<li><a href="{{ path('announcement') }}">announcement</li>#}
+                {#<li><a href="{{ path('announcement_create') }}">announcement_create</a></li>#}
+                {#<li><a href="{{ path('announcement_delete', {'id':0}) }}">announcement_delete{id}</a></li>#}
+                {#<li><a href="{{ path('announcement_edit', {'id':0}) }}">announcement_edit{id}</a></li>#}
+                {#<li><a href="{{ path('announcement_new') }}">announcement_new</a></li>#}
+                {#<li><a href="{{ path('announcement_show', {'id':0}) }}">announcement_show{id}</a></li>#}
+                {#<li><a href="{{ path('announcement_update', {'id':0}) }}">announcement_update{id}</a></li>#}
+            {#</ol>#}
+        {#</li>#}
+    </ul>
+{% endblock %}
+</div>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

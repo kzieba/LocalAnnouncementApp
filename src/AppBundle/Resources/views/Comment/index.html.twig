@@ -1,35 +1,35 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:index.html.twig' %}
 
 {% block body -%}
     <h1>Comment list</h1>
 
     <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Text</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('comment_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.text }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('comment_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('comment_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<th>Text</th>#}
+                {#<th>Actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for entity in entities %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('comment_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                {#<td>{{ entity.text }}</td>#}
+                {#<td>#}
+                {#<ul>#}
+                    {#<li>#}
+                        {#<a href="{{ path('comment_show', { 'id': entity.id }) }}">show</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="{{ path('comment_edit', { 'id': entity.id }) }}">edit</a>#}
+                    {#</li>#}
+                {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
 
         {#<ul>#}
         {#<li>#}
@@ -38,4 +38,10 @@
             {#</a>#}
         {#</li>#}
     {#</ul>#}
-    {% endblock %}
+{% if entities %}
+    {% for entity in entities %}
+        <a href="{{ path('announcement_show',{'id':entity.announcement.id}) }}">{{ entity.announcement.title }}</a>
+        {{ include('AppBundle:Comment:show.html.twig',{'id':entity.id}) }}
+    {% endfor %}
+{% endif %}
+        {% endblock %}

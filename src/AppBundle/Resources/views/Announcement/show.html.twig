@@ -1,46 +1,119 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:index.html.twig' %}
 
 {% block body -%}
-    <h1>Announcement</h1>
+    {#<h1>Announcement</h1>#}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ entity.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ entity.description }}</td>
-            </tr>
-            <tr>
-                <th>Expirationtime</th>
-                <td>{{ entity.expirationTime.timestamp }}</td>
-            </tr>
-        </tbody>
-    </table>
+    {#<table class="record_properties">#}
+        {#<tbody>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<td>{{ entity.id }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Title</th>#}
+                {#<td>{{ entity.title }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Description</th>#}
+                {#<td>{{ entity.description }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Expirationtime</th>#}
+                {#<td>{{ entity.expirationTime.timestamp }}</td>#}
+            {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#{% for photo in entity.photos %}#}
+        {#<img src="{{  asset(photo.pathToFile) }}" alt="{{ photo.altText }}" height="100" width="100">#}
+    {#{% else %}#}
+        {#<p>There is no image for this annoucement yet!</p>#}
+    {#{% endfor %}#}
+
+    {#<ul class="record_actions">#}
+        {#<li>#}
+            {#<a href="{{ path('announcement') }}">#}
+                {#Back to the list#}
+            {#</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('announcement_edit', { 'id': entity.id }) }}">#}
+                {#Edit#}
+            {#</a>#}
+        {#</li>#}
+        {#<li>{{ form(delete_form) }}</li>#}
+    {#</ul>#}
+
+
+
+
+
+
+    <h1>{{ entity.title }}</h1>
+    <h5>expires on {{ entity.expirationTime|date("Y-m-d \\a\\t H:i:s e") }}</h5>
+
+    <h4>added by {{ entity.user.username }}</h4>
+
+    {% if app.user %}
+        {% if app.user.id == entity.user.id %}
+            <ul class="record_actions">
+                <li>
+                    <a href="{{ path('announcement') }}">
+                        Back to the list
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('announcement_edit', { 'id': entity.id }) }}">
+                        Edit
+                    </a>
+                </li>
+                <li>{{ form(delete_form) }}</li>
+            </ul>
+        {% endif %}
+    {% endif %}
 
     {% for photo in entity.photos %}
-        <img src="http://192.168.33.22:8000/{{ photo.pathToFile }}" alt="{{ photo.altText }}" height="100" width="100">
+        <img src="{{  asset(photo.pathToFile) }}" alt="{{ photo.altText }}" height="100" width="100">
     {% else %}
         <p>There is no image for this annoucement yet!</p>
     {% endfor %}
+    <p>{{ entity.description }}</p>
 
-    <ul class="record_actions">
-    <li>
-        <a href="{{ path('announcement') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('announcement_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="categories">
+        <h4>In categories:</h4>
+        <ul>
+            {% for category in entity.categories %}
+                <li><a href="{{ path('category_show', {'id':category.id}) }}">{{ category }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h4>Comments:</h4>
+            {% for comment in entity.comments %}
+                {{ include('AppBundle:Comment:show.html.twig',{'entity':comment, 'id':comment.id}) }}
+                {#<h5>#}
+                    {#{% if comment.user %}#}
+                        {#{{ comment.user }}#}
+                    {#{% else %}#}
+                        {#anonymous comment#}
+                    {#{% endif %}#}
+                {#</h5>#}
+                {#<p>{{ comment.text }}</p>#}
+                {#{% if app.user %}#}
+                    {#{% if comment.user %}#}
+                        {#{% if app.user.id == comment.user.id %}#}
+                            {#<a href="{{ path('comment_edit', { 'id': comment.id }) }}">edit</a>#}
+                        {#{% endif %}#}
+                    {#{% endif %}#}
+                {#{% endif %}#}
+            {% endfor %}
+        <a href="{{ path('comment_new',{'id':entity.id}) }}">add new</a>
+    </div>
+
+
+
+
+
+
 {% endblock %}

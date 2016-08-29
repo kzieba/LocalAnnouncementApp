@@ -279,4 +279,18 @@ class Announcement
     {
         return $this->photos;
     }
+
+    public function sd()
+    {
+        $str = $this->getDescription();
+        if( strlen( $str) > 47) {
+            $str = explode( "\n", wordwrap( $str, 47));
+            $str = $str[0] . '...';
+        }
+
+        $str = strlen($str) > 50 ? substr($str,0,47)."..." : $str;
+
+        return $str;
+
+    }
 }

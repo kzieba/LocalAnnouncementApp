@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,7 +33,7 @@ class CommentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Comment')->findAll();
+        $entities = $em->getRepository('AppBundle:Comment')->findBy(['user'=> $this->getUser()]);
 
         return array(
             'entities' => $entities,
@@ -61,7 +62,7 @@ class CommentController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('comment_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('announcement_show', array('id' => $id)));
         }
 
         return array(
@@ -93,13 +94,14 @@ class CommentController extends Controller
      * Displays a form to create a new Comment entity.
      *
      * @Route("/new/{id}", name="comment_new")
-     * @Method("POST")
+     * @Method("GET")
      * @Template()
      */
     public function newAction($id)
     {
         $entity = new Comment();
-
+            $announcement = $this->getDoctrine()->getRepository('AppBundle:Announcement')->find($id);
+        $entity->setAnnouncement($announcement);
         $form   = $this->createCreateForm($entity, $id);
 
         return array(
@@ -139,15 +141,21 @@ class CommentController extends Controller
      * @Route("/{id}/edit", name="comment_edit")
      * @Method("GET")
      * @Template()
+     * @Security("has_role('ROLE_USER')")
      */
     public function editAction($id)
     {
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:Comment')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Comment entity.');
+        }
+
+        if ($this->getUser() != $entity->getUser()) {
+            return $this->redirectToRoute('comment_show',['id' => $id]);
         }
 
         $editForm = $this->createEditForm($entity);
@@ -184,6 +192,7 @@ class CommentController extends Controller
      * @Route("/{id}", name="comment_update")
      * @Method("PUT")
      * @Template("AppBundle:Comment:edit.html.twig")
+     * @Security("has_role('ROLE_USER')")
      */
     public function updateAction(Request $request, $id)
     {
@@ -193,6 +202,10 @@ class CommentController extends Controller
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Comment entity.');
+        }
+
+        if ($this->getUser() != $entity->getUser()) {
+            return $this->redirectToRoute('comment_show',['id' => $id]);
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -216,6 +229,7 @@ class CommentController extends Controller
      *
      * @Route("/{id}", name="comment_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -225,6 +239,10 @@ class CommentController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AppBundle:Comment')->find($id);
+
+            if ($this->getUser() != $entity->getUser()) {
+                return $this->redirectToRoute('comment_show',['id' => $id]);
+            }
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Comment entity.');

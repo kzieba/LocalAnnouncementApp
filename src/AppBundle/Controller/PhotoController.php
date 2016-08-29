@@ -51,7 +51,7 @@ class PhotoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $announcement->setPhoto($entity);
+            $announcement->addPhoto($entity);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

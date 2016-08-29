@@ -1,5 +1,19 @@
-{% extends 'base.html.twig' %}
-
-{% block body -%}
-    <h4>{{ entity.title }} by {{ entity.user.name }}</h4>
-{% endblock %}
+{% if entity.expirationTime < date('c') %}
+<tr class="inactive">
+{% else %}
+<tr>
+{% endif %}
+    <td>
+        <a href="{{ path('announcement_show', { 'id': entity.id }) }}">{{ entity.title }}</a>
+    </td>
+    <td>
+        {{ entity.user.username }}
+    </td>
+    <td>
+        {{ entity.sd() }}
+        {#<span class="ellipsis">{{ entity.getShortDescription }}</span>#}
+    </td>
+    <td>
+        {{ entity.expirationTime|date("Y-m-d") }}
+    </td>
+</tr>

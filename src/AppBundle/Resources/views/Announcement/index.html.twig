@@ -1,65 +1,89 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle:Default:index.html.twig' %}
 
-{% block body -%}
-    <h1>Announcement list</h1>
+{% block body %}
+    {#<h1>Announcement list</h1>#}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Expirationtime</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('announcement_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.title }}</td>
-                <td>{{ entity.description }}</td>
-                <td>
-                    <ul>
-                        {% for category in entity.categories %}
-                            {{ category }}
-                        {% endfor %}
-                    </ul>
-                </td>
-                <td>{{ entity.expirationTime|date('c') }}</td>
-                <td>
-                    {% for comment in entity.comments %}
-                        <p><strong>{{ comment.user.username }}</strong> commented:</p>
-                        <p>{{ comment.text }}</p>
-                    {% endfor %}
-                </td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('announcement_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('announcement_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                    <li>
-                        <form method="POST" action="{{ path('comment_new',{'id':entity.id}) }}">
-                            <input type="hidden" name="announcement" value="{{ entity }}">
-                            <input type="submit" value="add comment">
-                        </form>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {#<table class="records_list">#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<th>Title</th>#}
+                {#<th>Description</th>#}
+                {#<th>Category</th>#}
+                {#<th>Expirationtime</th>#}
+                {#<th>Actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for entity in entities %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('announcement_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                {#<td>{{ entity.title }}</td>#}
+                {#<td>{{ entity.description }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#{% for category in entity.categories %}#}
+                            {#{{ category }}#}
+                        {#{% endfor %}#}
+                    {#</ul>#}
+                {#</td>#}
+                {#<td>{{ entity.expirationTime|date('c') }}</td>#}
+                {#<td>#}
+                    {#{% for comment in entity.comments %}#}
+                        {#<p><strong>{{ comment.user.username }}</strong> commented:</p>#}
+                        {#<p>{{ comment.text }}</p>#}
+                    {#{% endfor %}#}
+                {#</td>#}
+                {#<td>#}
+                {#<ul>#}
+                    {#<li>#}
+                        {#<a href="{{ path('announcement_show', { 'id': entity.id }) }}">show</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="{{ path('announcement_edit', { 'id': entity.id }) }}">edit</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<form method="POST" action="{{ path('comment_new',{'id':entity.id}) }}">#}
+                            {#<input type="hidden" name="announcement" value="{{ entity }}">#}
+                            {#<input type="submit" value="add comment">#}
+                        {#</form>#}
+                    {#</li>#}
+                {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
 
-        <ul>
-        <li>
-            <a href="{{ path('announcement_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+        {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('announcement_new') }}">#}
+                {#Create a new entry#}
+            {#</a>#}
+        {#</li>#}
+    {#</ul>#}
+
+
+<table class="records_list">
+    <thead>
+    <tr>
+        <th>Description</th>
+        <th>Added by:</th>
+        <th>Desc.</th>
+        <th>until</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        {% include 'AppBundle:Announcement:title.html.twig' %}
+    {% endfor %}
+    </tbody>
+</table>
+    {% if app.user %}
+        <a href="{{ path('announcement_new') }}">
+            Create a new entry
+        </a>
+    {% else %}
+        <a href="{{ path('fos_user_security_login') }}">Login</a> to add new entries!
+    {% endif %}
     {% endblock %}

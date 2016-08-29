@@ -12,4 +12,66 @@ use Doctrine\ORM\EntityRepository;
  */
 class AnnouncementRepository extends EntityRepository
 {
+
+//    public function findOrderedByRaiting($start, $stop){
+//        $posts = $this->getEntityManager()->createQuery(
+//            'SELECT p FROM MyBundle:Post p ORDER BY p.raiting DESC BETWEEN :start AND :stop')
+//            ->setParameter("start", 20)
+//            ->setParameter("stop", 30)
+//            ->getResult();
+//        return $posts;
+//    }
+
+
+    public function findActuall($page = 1){
+//        $posts = $this->getEntityManager()->createQuery(
+//            'SELECT a FROM AppBundle:Announcement a WHERE a.expirationTime > :date ' )//BETWEEN :start AND :stop
+//            ->setParameter('date', date('c'))
+//            ->setParameter("start", ($page-1)*10)
+//            ->setParameter("stop", $page*10)
+//            ->getResult();
+
+        $posts = $this
+            ->getEntityManager()
+            ->createQueryBuilder()
+            ->select('a')
+            ->from('AppBundle:Announcement', 'a')
+            ->where('a.expirationTime > :date')
+            ->setParameter('date', date('c'))
+            ->setFirstResult( 10*($page-1) )
+//            ->setMaxResults( 10 )
+            ->getQuery()
+            ->getResult();
+
+        return $posts;
+    }
+
+    public function findByCategory($category){
+//        $posts = $this->getEntityManager()->createQuery(
+//            'SELECT a FROM AppBundle:Announcement a WHERE a.expirationTime > :date' )
+//            ->setParameter('date', date('c'))
+//            //->andWhere('a.categories IN (:category)')
+//           // ->where('a.categories = :category')
+//            ->setParameter('category', $category)
+//            ->getResult();
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $qb->select('a')
+            ->from('AppBundle:Announcement', 'a')
+            ->where('a.expirationTime > :date')
+            ->setParameter('date', date('c'))
+            ->andWhere(':category IN (a.categories)')
+            ->setParameter('category', $category)
+            ->getQuery();
+//var_dump($query);
+//            ->orderBy('u.name', 'ASC');
+        $result = $query->getResult();
+        return $result;
+    }
+
+
+
+
+
+
+
 }
